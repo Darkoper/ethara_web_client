@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LayoutDashboard, FolderKanban, ListChecks, Users, Calendar, BarChart3, Settings, Sparkles, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
-import { RoleBadge } from "./Badges";
+import { RoleBadge } from "@/components/Badges";
 
 const items = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
