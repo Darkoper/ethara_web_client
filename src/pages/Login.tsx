@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Sparkles, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useApp } from "@/context/AppContext";
 import { CosmicBackground } from "@/components/CosmicBackground";
+import { BrandLogo } from "@/components/BrandLogo";
 import { toast } from "sonner";
 
 const schema = z.object({
@@ -24,10 +25,15 @@ export default function Login() {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 700));
-    login(data.email);
-    toast.success("Welcome back ✨");
-    navigate("/dashboard");
+    try {
+      await login(data.email, data.password);
+      toast.success("Welcome back");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to sign in");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,8 +41,8 @@ export default function Login() {
       <CosmicBackground />
       <motion.div initial={{ opacity: 0, y: 30, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="relative w-full max-w-md">
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-6 flex items-center justify-center gap-2">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-aurora shadow-glow"><Sparkles className="h-5 w-5 text-white" /></div>
-          <span className="font-display text-3xl">Nova</span>
+          <BrandLogo className="h-10 w-10" iconClassName="h-5 w-5" />
+          <span className="font-display text-3xl">Harmony</span>
         </motion.div>
 
         <div className="glass-strong rounded-3xl p-8 shadow-elegant">

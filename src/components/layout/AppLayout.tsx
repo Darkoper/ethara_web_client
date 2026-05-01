@@ -6,9 +6,18 @@ import { useApp } from "@/context/AppContext";
 import { CosmicBackground } from "@/components/CosmicBackground";
 
 export function AppLayout() {
-  const { currentUser } = useApp();
+  const { currentUser, isLoading } = useApp();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  if (isLoading) {
+    return (
+      <div className="relative min-h-screen grid place-items-center text-foreground">
+        <CosmicBackground />
+        <div className="text-sm text-muted-foreground">Loading workspace...</div>
+      </div>
+    );
+  }
 
   if (!currentUser) return <Navigate to="/login" replace />;
 

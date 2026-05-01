@@ -28,7 +28,7 @@ export function Navbar({ onMenuClick }: { onMenuClick: () => void }) {
           </button>
 
           <nav className="hidden md:flex items-center gap-1.5 text-sm">
-            <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition">Nova</Link>
+            <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition">Harmony</Link>
             {segments.map((s, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />

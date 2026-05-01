@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutDashboard, FolderKanban, ListChecks, Users, Calendar, BarChart3, Settings, Sparkles, ChevronLeft } from "lucide-react";
+import { LayoutDashboard, FolderKanban, ListChecks, Users, Calendar, BarChart3, Settings, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 import { RoleBadge } from "@/components/Badges";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const items = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -22,13 +23,11 @@ export function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobileOpen }: 
   const content = (
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-3 px-5 py-5">
-        <div className="grid h-9 w-9 place-items-center rounded-xl bg-aurora shadow-glow">
-          <Sparkles className="h-5 w-5 text-white" />
-        </div>
+        <BrandLogo className="h-9 w-9" iconClassName="h-5 w-5" />
         <AnimatePresence>
           {!collapsed && (
             <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="flex flex-col">
-              <span className="font-display text-xl leading-none">Nova</span>
+              <span className="font-display text-xl leading-none">Harmony</span>
               <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Workspace</span>
             </motion.div>
           )}

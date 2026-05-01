@@ -61,7 +61,7 @@ export default function Team() {
                       <button className="opacity-0 group-hover:opacity-100 transition rounded-lg p-1.5 hover:bg-secondary"><MoreVertical className="h-4 w-4" /></button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="glass-strong">
-                      <DropdownMenuItem onClick={() => switchRole(u.role === "admin" ? "member" : "admin")}>Toggle role (demo)</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => switchRole(u.role === "admin" ? "member" : "admin", u.id)}>Toggle role</DropdownMenuItem>
                       <DropdownMenuItem className="text-destructive" onClick={() => setRemoveId(u.id)}><Trash2 className="h-4 w-4 mr-1.5" />Remove</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

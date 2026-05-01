@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Sparkles, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useApp } from "@/context/AppContext";
 import { CosmicBackground } from "@/components/CosmicBackground";
+import { BrandLogo } from "@/components/BrandLogo";
 import { toast } from "sonner";
 
 const schema = z.object({
@@ -18,18 +19,22 @@ const schema = z.object({
 });
 
 export default function Signup() {
-  const { inviteMember, login } = useApp();
+  const { signup } = useApp();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof schema>>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 800));
-    inviteMember({ name: data.name, email: data.email, role: "admin", title: "Founder" });
-    login(data.email);
-    toast.success("Account created — welcome aboard ✨");
-    navigate("/dashboard");
+    try {
+      await signup(data);
+      toast.success("Account created");
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to create account");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,8 +42,8 @@ export default function Signup() {
       <CosmicBackground />
       <motion.div initial={{ opacity: 0, y: 30, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="relative w-full max-w-md">
         <div className="mb-6 flex items-center justify-center gap-2">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-aurora shadow-glow"><Sparkles className="h-5 w-5 text-white" /></div>
-          <span className="font-display text-3xl">Nova</span>
+          <BrandLogo className="h-10 w-10" iconClassName="h-5 w-5" />
+          <span className="font-display text-3xl">Harmony</span>
         </div>
 
         <div className="glass-strong rounded-3xl p-8 shadow-elegant">
