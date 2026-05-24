@@ -3,7 +3,7 @@ import { useApp } from "@/context/AppContext";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, PieChart, Pie, Cell, Legend, RadialBarChart, RadialBar } from "recharts";
 import { ProgressBar } from "@/components/Progress";
 
-const COLORS = ["hsl(260 90% 70%)", "hsl(220 90% 65%)", "hsl(280 90% 75%)", "hsl(152 70% 50%)", "hsl(38 95% 60%)", "hsl(0 75% 60%)"];
+const COLORS = ["hsl(356 86% 66%)", "hsl(348 78% 58%)", "hsl(2 80% 64%)", "hsl(342 72% 48%)", "hsl(0 70% 42%)", "hsl(356 86% 58%)"];
 
 export default function Reports() {
   const { projects, tasks, users } = useApp();
@@ -74,7 +74,7 @@ export default function Reports() {
               <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickLine={false} axisLine={false} />
               <Tooltip contentStyle={{ background: "hsl(var(--popover))", border: "1px solid hsl(var(--border))", borderRadius: 12 }} />
               <Legend />
-              <Bar dataKey="completed" stackId="a" fill="hsl(152 70% 50%)" radius={[0,0,0,0]} />
+              <Bar dataKey="completed" stackId="a" fill="hsl(348 76% 58%)" radius={[0,0,0,0]} />
               <Bar dataKey="pending" stackId="a" fill="hsl(260 90% 70%)" radius={[8,8,0,0]} />
             </BarChart>
           </ResponsiveContainer>

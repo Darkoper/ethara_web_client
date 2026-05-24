@@ -1,6 +1,6 @@
-# Harmony Project Hub Frontend
+# Ethara Workspace Frontend
 
-React + Vite frontend for the Harmony project management application.
+React + Vite frontend for the Ethara project management application.
 
 ## Features
 

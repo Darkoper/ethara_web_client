@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, MessageSquare } from "lucide-react";
+import { Calendar, MessageSquare, Paperclip } from "lucide-react";
 import { format, isPast } from "date-fns";
 import { Task } from "@/lib/types";
 import { useApp } from "@/context/AppContext";
@@ -16,19 +16,19 @@ export function TaskCard({ task, onClick, compact = false }: { task: Task; onCli
       layout
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -2, scale: 1.01 }}
+      whileHover={{ y: -2 }}
       onClick={onClick}
       className={cn(
-        "group cursor-pointer rounded-xl border border-border/60 bg-card/70 backdrop-blur-xl p-3.5 shadow-sm transition-all hover:border-primary/40 hover:shadow-glow",
+        "group cursor-pointer rounded-lg border border-border bg-card p-3.5 shadow-sm transition-all hover:border-primary/40 hover:shadow-elegant",
         compact && "p-3"
       )}
     >
       <div className="flex items-start justify-between gap-2">
-        <h4 className="text-sm font-medium leading-snug line-clamp-2 group-hover:text-primary-glow transition">{task.title}</h4>
+        <h4 className="text-sm font-semibold leading-snug line-clamp-2 group-hover:text-primary transition">{task.title}</h4>
         <PriorityBadge priority={task.priority} />
       </div>
-      {task.description && !compact && (
-        <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">{task.description}</p>
+      {task.description && (
+        <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-3">{task.description}</p>
       )}
       <div className="mt-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -36,6 +36,7 @@ export function TaskCard({ task, onClick, compact = false }: { task: Task; onCli
           {task.comments.length > 0 && (
             <span className="flex items-center gap-1 text-[11px] text-muted-foreground"><MessageSquare className="h-3 w-3" />{task.comments.length}</span>
           )}
+          <span className="hidden items-center gap-1 text-[11px] text-muted-foreground sm:flex"><Paperclip className="h-3 w-3" />1</span>
         </div>
         {task.dueDate && (
           <span className={cn("flex items-center gap-1 text-[11px]", overdue ? "text-rose-400" : "text-muted-foreground")}>

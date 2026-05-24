@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils";
 
 export function StatCard({ icon: Icon, label, value, change, accent = "primary", index = 0 }: { icon: LucideIcon; label: string; value: string | number; change?: number; accent?: "primary" | "success" | "warning" | "destructive"; index?: number }) {
   const accentMap = {
-    primary: "from-violet-500/30 to-fuchsia-500/20 text-primary-glow",
-    success: "from-emerald-500/30 to-teal-500/20 text-emerald-300",
-    warning: "from-amber-500/30 to-orange-500/20 text-amber-300",
-    destructive: "from-rose-500/30 to-pink-500/20 text-rose-300",
+    primary: "from-red-500/30 to-rose-500/20 text-primary-glow",
+    success: "from-rose-500/30 to-red-500/20 text-rose-300",
+    warning: "from-red-400/30 to-rose-500/20 text-red-300",
+    destructive: "from-red-700/30 to-red-500/20 text-red-300",
   };
   return (
     <motion.div
@@ -23,7 +23,7 @@ export function StatCard({ icon: Icon, label, value, change, accent = "primary",
           <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
           <div className="mt-1.5 font-display text-4xl">{value}</div>
           {typeof change === "number" && (
-            <div className={cn("mt-1.5 inline-flex items-center gap-1 text-xs", change >= 0 ? "text-emerald-400" : "text-rose-400")}>
+            <div className={cn("mt-1.5 inline-flex items-center gap-1 text-xs", change >= 0 ? "text-rose-300" : "text-red-400")}>
               {change >= 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
               {Math.abs(change)}% vs last week
             </div>

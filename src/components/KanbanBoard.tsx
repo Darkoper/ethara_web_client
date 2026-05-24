@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { useApp } from "@/context/AppContext";
 
 const columns: { id: TaskStatus; label: string; color: string }[] = [
-  { id: "todo", label: "Todo", color: "bg-muted-foreground/60" },
+  { id: "todo", label: "To Do", color: "bg-zinc-400" },
   { id: "in_progress", label: "In Progress", color: "bg-primary" },
-  { id: "in_review", label: "In Review", color: "bg-violet-400" },
-  { id: "completed", label: "Completed", color: "bg-emerald-400" },
+  { id: "in_review", label: "Review", color: "bg-sky-500" },
+  { id: "completed", label: "Completed", color: "bg-red-500" },
 ];
 
 export function KanbanBoard({ tasks, onTaskClick, onAdd }: { tasks: Task[]; onTaskClick?: (t: Task) => void; onAdd?: (status: TaskStatus) => void }) {
@@ -25,7 +25,7 @@ export function KanbanBoard({ tasks, onTaskClick, onAdd }: { tasks: Task[]; onTa
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
       {columns.map(col => {
         const colTasks = tasks.filter(t => t.status === col.id);
         return (
@@ -33,22 +33,22 @@ export function KanbanBoard({ tasks, onTaskClick, onAdd }: { tasks: Task[]; onTa
             key={col.id}
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => onDrop(e, col.id)}
-            className="rounded-2xl border border-border/60 bg-card/40 backdrop-blur-xl p-3 min-h-[400px]"
+            className="min-h-[420px] rounded-lg border border-transparent bg-transparent p-0"
           >
-            <div className="flex items-center justify-between px-1.5 mb-3">
+            <div className="mb-3 flex items-center justify-between px-1">
               <div className="flex items-center gap-2">
                 <span className={cn("h-2 w-2 rounded-full", col.color)} />
-                <span className="text-sm font-semibold">{col.label}</span>
-                <span className="text-xs text-muted-foreground">{colTasks.length}</span>
+                <span className="text-base font-semibold">{col.label}</span>
+                <span className="text-sm text-muted-foreground">({colTasks.length})</span>
               </div>
               {isAdmin && onAdd && (
-                <button onClick={() => onAdd(col.id)} className="rounded-md p-1 hover:bg-secondary"><Plus className="h-3.5 w-3.5" /></button>
+                <button onClick={() => onAdd(col.id)} className="rounded-md p-1.5 text-muted-foreground hover:bg-card hover:text-foreground"><Plus className="h-3.5 w-3.5" /></button>
               )}
             </div>
             <div className="space-y-2">
               <AnimatePresence>
                 {colTasks.map(task => (
-                  <motion.div key={task.id} layout draggable onDragStart={(e) => onDragStart(e as any, task.id)}>
+                  <motion.div key={task.id} layout draggable onDragStart={(e: React.DragEvent<HTMLDivElement>) => onDragStart(e, task.id)}>
                     <TaskCard task={task} onClick={() => onTaskClick?.(task)} compact />
                   </motion.div>
                 ))}

@@ -2,15 +2,12 @@ import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { useTheme } from "next-themes";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Sparkles } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { RoleBadge } from "@/components/Badges";
 
 export default function Settings() {
   const { currentUser, logout } = useApp();
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
   if (!currentUser) return null;
@@ -36,17 +33,6 @@ export default function Settings() {
           <div className="space-y-1.5"><label className="text-xs text-muted-foreground">Name</label><Input defaultValue={currentUser.name} /></div>
           <div className="space-y-1.5"><label className="text-xs text-muted-foreground">Email</label><Input defaultValue={currentUser.email} /></div>
           <div className="space-y-1.5"><label className="text-xs text-muted-foreground">Title</label><Input defaultValue={currentUser.title} /></div>
-        </div>
-      </motion.div>
-
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="rounded-2xl border border-border/60 bg-card/60 backdrop-blur-xl p-6">
-        <h2 className="font-display text-2xl mb-4">Appearance</h2>
-        <div className="flex items-center justify-between rounded-xl border border-border/60 p-4">
-          <div>
-            <div className="text-sm font-medium flex items-center gap-2"><Sparkles className="h-4 w-4 text-primary-glow" /> Dark mode</div>
-            <div className="text-xs text-muted-foreground">Toggle between cosmic dark and bright themes.</div>
-          </div>
-          <Switch checked={theme === "dark"} onCheckedChange={(v) => setTheme(v ? "dark" : "light")} />
         </div>
       </motion.div>
 

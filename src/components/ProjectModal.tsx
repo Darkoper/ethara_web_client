@@ -9,12 +9,12 @@ import { useApp } from "@/context/AppContext";
 import { toast } from "sonner";
 
 const colors = [
-  "from-violet-500 to-fuchsia-500",
-  "from-indigo-500 to-violet-500",
-  "from-blue-500 to-cyan-500",
-  "from-emerald-500 to-teal-500",
+  "from-red-500 to-rose-500",
+  "from-rose-600 to-red-500",
+  "from-red-700 to-rose-500",
+  "from-rose-500 to-red-400",
   "from-pink-500 to-rose-500",
-  "from-amber-500 to-orange-500",
+  "from-red-400 to-rose-600",
 ];
 
 export function ProjectModal({ open, onOpenChange, project }: { open: boolean; onOpenChange: (v: boolean) => void; project?: Project | null }) {

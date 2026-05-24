@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { Bell, Search, Menu, LogOut, Sun, Moon, Command, ChevronRight, Check } from "lucide-react";
+import { Bell, Search, Menu, LogOut, ChevronRight, Check, SlidersHorizontal, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useApp } from "@/context/AppContext";
-import { useTheme } from "next-themes";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { RoleBadge } from "@/components/Badges";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -13,7 +12,6 @@ export function Navbar({ onMenuClick }: { onMenuClick: () => void }) {
   const { currentUser, logout, switchRole, notifications, markNotificationRead } = useApp();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { theme, setTheme } = useTheme();
   const [paletteOpen, setPaletteOpen] = useState(false);
 
   const unread = notifications.filter(n => !n.read).length;
@@ -21,14 +19,14 @@ export function Navbar({ onMenuClick }: { onMenuClick: () => void }) {
 
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-border/60 bg-background/70 backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-b border-border bg-background/95">
         <div className="flex h-16 items-center gap-3 px-4 sm:px-6">
           <button onClick={onMenuClick} className="lg:hidden grid h-9 w-9 place-items-center rounded-lg hover:bg-secondary">
             <Menu className="h-5 w-5" />
           </button>
 
           <nav className="hidden md:flex items-center gap-1.5 text-sm">
-            <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition">Harmony</Link>
+            <Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition">Ethara</Link>
             {segments.map((s, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
@@ -40,24 +38,26 @@ export function Navbar({ onMenuClick }: { onMenuClick: () => void }) {
           <div className="ml-auto flex items-center gap-2">
             <button
               onClick={() => setPaletteOpen(true)}
-              className="hidden sm:flex items-center gap-2 rounded-xl border border-border bg-secondary/60 px-3 py-1.5 text-sm text-muted-foreground hover:bg-secondary transition w-64"
+              className="hidden sm:flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground hover:bg-secondary transition w-64"
             >
               <Search className="h-4 w-4" />
               <span className="flex-1 text-left">Search anything…</span>
               <kbd className="rounded bg-background border border-border px-1.5 py-0.5 text-[10px]">⌘K</kbd>
             </button>
-            <button onClick={() => setPaletteOpen(true)} className="sm:hidden grid h-9 w-9 place-items-center rounded-lg hover:bg-secondary"><Search className="h-4 w-4" /></button>
-
-            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="grid h-9 w-9 place-items-center rounded-lg hover:bg-secondary">
-              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            <button className="hidden md:grid h-9 w-9 place-items-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-secondary">
+              <SlidersHorizontal className="h-4 w-4" />
             </button>
+            <button className="hidden md:grid h-9 w-9 place-items-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-secondary">
+              <Share2 className="h-4 w-4" />
+            </button>
+            <button onClick={() => setPaletteOpen(true)} className="sm:hidden grid h-9 w-9 place-items-center rounded-lg hover:bg-secondary"><Search className="h-4 w-4" /></button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="relative grid h-9 w-9 place-items-center rounded-lg hover:bg-secondary">
+                <button className="relative grid h-9 w-9 place-items-center rounded-lg border border-border bg-card hover:bg-secondary">
                   <Bell className="h-4 w-4" />
                   {unread > 0 && (
-                    <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-1.5 right-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-aurora text-[9px] font-bold text-white px-1">{unread}</motion.span>
+                    <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-1.5 right-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-primary text-[9px] font-bold text-white px-1">{unread}</motion.span>
                   )}
                 </button>
               </DropdownMenuTrigger>
@@ -85,7 +85,7 @@ export function Navbar({ onMenuClick }: { onMenuClick: () => void }) {
             {currentUser && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-2 rounded-xl border border-border bg-secondary/60 px-1.5 py-1 hover:bg-secondary transition">
+                  <button className="flex items-center gap-2 rounded-lg border border-border bg-card px-1.5 py-1 hover:bg-secondary transition">
                     <img src={currentUser.avatar} alt="" className="h-7 w-7 rounded-lg bg-background" />
                     <div className="hidden sm:flex flex-col items-start pr-2">
                       <span className="text-xs font-medium leading-none">{currentUser.name.split(" ")[0]}</span>

@@ -43,7 +43,7 @@ export default function Signup() {
       <motion.div initial={{ opacity: 0, y: 30, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="relative w-full max-w-md">
         <div className="mb-6 flex items-center justify-center gap-2">
           <BrandLogo className="h-10 w-10" iconClassName="h-5 w-5" />
-          <span className="font-display text-3xl">Harmony</span>
+          <span className="font-display text-3xl">Ethara</span>
         </div>
 
         <div className="glass-strong rounded-3xl p-8 shadow-elegant">

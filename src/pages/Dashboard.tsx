@@ -81,14 +81,14 @@ export default function Dashboard() {
               <AreaChart data={last7}>
                 <defs>
                   <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="hsl(260 90% 70%)" stopOpacity={0.5} /><stop offset="100%" stopColor="hsl(260 90% 70%)" stopOpacity={0} /></linearGradient>
-                  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="hsl(152 70% 50%)" stopOpacity={0.4} /><stop offset="100%" stopColor="hsl(152 70% 50%)" stopOpacity={0} /></linearGradient>
+                  <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="hsl(348 76% 58%)" stopOpacity={0.4} /><stop offset="100%" stopColor="hsl(348 76% 58%)" stopOpacity={0} /></linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
                 <XAxis dataKey="day" stroke="hsl(var(--muted-foreground))" fontSize={11} tickLine={false} axisLine={false} />
                 <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickLine={false} axisLine={false} />
                 <Tooltip contentStyle={{ background: "hsl(var(--popover))", border: "1px solid hsl(var(--border))", borderRadius: 12 }} />
                 <Area type="monotone" dataKey="created" stroke="hsl(260 90% 70%)" strokeWidth={2} fill="url(#g1)" />
-                <Area type="monotone" dataKey="completed" stroke="hsl(152 70% 50%)" strokeWidth={2} fill="url(#g2)" />
+                <Area type="monotone" dataKey="completed" stroke="hsl(348 76% 58%)" strokeWidth={2} fill="url(#g2)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -131,7 +131,7 @@ export default function Dashboard() {
                       <div className="text-xs text-muted-foreground truncate">{project?.name}</div>
                     </div>
                     <PriorityBadge priority={t.priority} />
-                    <div className={`text-xs font-medium ${days < 0 ? "text-rose-400" : days <= 2 ? "text-amber-300" : "text-muted-foreground"}`}>
+                    <div className={`text-xs font-medium ${days < 0 ? "text-red-400" : days <= 2 ? "text-rose-300" : "text-muted-foreground"}`}>
                       {days < 0 ? `${Math.abs(days)}d overdue` : days === 0 ? "Today" : `${days}d`}
                     </div>
                   </motion.div>

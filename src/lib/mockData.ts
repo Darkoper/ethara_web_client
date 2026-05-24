@@ -10,12 +10,12 @@ export const users: User[] = [
 ];
 
 export const projects: Project[] = [
-  { id: "p1", name: "Aurora Design System", description: "Unified design tokens, components, and motion language across all surfaces.", status: "active", priority: "high", dueDate: "2026-06-15", memberIds: ["u1","u2","u3"], ownerId: "u1", color: "from-violet-500 to-fuchsia-500", createdAt: "2026-03-01" },
-  { id: "p2", name: "Nova Mobile App", description: "Native iOS & Android client with offline-first sync and beautiful UX.", status: "active", priority: "urgent", dueDate: "2026-05-20", memberIds: ["u2","u3","u4","u5"], ownerId: "u6", color: "from-indigo-500 to-violet-500", createdAt: "2026-02-10" },
-  { id: "p3", name: "Stellar Analytics", description: "Real-time dashboards with predictive insights powered by ML.", status: "planning", priority: "medium", dueDate: "2026-08-01", memberIds: ["u1","u4","u6"], ownerId: "u1", color: "from-blue-500 to-cyan-500", createdAt: "2026-04-12" },
-  { id: "p4", name: "Orbit CRM Integration", description: "Two-way sync with Salesforce, Hubspot, and Pipedrive.", status: "on_hold", priority: "low", dueDate: "2026-07-10", memberIds: ["u4","u5"], ownerId: "u6", color: "from-emerald-500 to-teal-500", createdAt: "2026-01-22" },
+  { id: "p1", name: "Aurora Design System", description: "Unified design tokens, components, and motion language across all surfaces.", status: "active", priority: "high", dueDate: "2026-06-15", memberIds: ["u1","u2","u3"], ownerId: "u1", color: "from-red-500 to-rose-500", createdAt: "2026-03-01" },
+  { id: "p2", name: "Nova Mobile App", description: "Native iOS & Android client with offline-first sync and beautiful UX.", status: "active", priority: "urgent", dueDate: "2026-05-20", memberIds: ["u2","u3","u4","u5"], ownerId: "u6", color: "from-rose-600 to-red-500", createdAt: "2026-02-10" },
+  { id: "p3", name: "Stellar Analytics", description: "Real-time dashboards with predictive insights powered by ML.", status: "planning", priority: "medium", dueDate: "2026-08-01", memberIds: ["u1","u4","u6"], ownerId: "u1", color: "from-red-700 to-rose-500", createdAt: "2026-04-12" },
+  { id: "p4", name: "Orbit CRM Integration", description: "Two-way sync with Salesforce, Hubspot, and Pipedrive.", status: "on_hold", priority: "low", dueDate: "2026-07-10", memberIds: ["u4","u5"], ownerId: "u6", color: "from-rose-500 to-red-400", createdAt: "2026-01-22" },
   { id: "p5", name: "Quantum Onboarding", description: "Interactive product tour, guided checklists, and milestone rewards.", status: "active", priority: "high", dueDate: "2026-05-30", memberIds: ["u1","u2","u5"], ownerId: "u1", color: "from-pink-500 to-rose-500", createdAt: "2026-03-18" },
-  { id: "p6", name: "Helix Billing v2", description: "Usage-based pricing engine with proration and invoicing.", status: "completed", priority: "medium", dueDate: "2026-04-01", memberIds: ["u4","u6"], ownerId: "u6", color: "from-amber-500 to-orange-500", createdAt: "2026-01-05" },
+  { id: "p6", name: "Helix Billing v2", description: "Usage-based pricing engine with proration and invoicing.", status: "completed", priority: "medium", dueDate: "2026-04-01", memberIds: ["u4","u6"], ownerId: "u6", color: "from-red-400 to-rose-600", createdAt: "2026-01-05" },
 ];
 
 const today = new Date();

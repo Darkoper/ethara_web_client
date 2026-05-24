@@ -1,17 +1,24 @@
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const DEFAULT_API_BASE = import.meta.env.PROD
+  ? "https://ethara-web-server.onrender.com/api"
+  : "/api";
+
+const configuredApiBase = import.meta.env.VITE_API_URL?.replace(/\/$/, "");
+const API_BASE = import.meta.env.PROD && (!configuredApiBase || configuredApiBase === "/api")
+  ? DEFAULT_API_BASE
+  : configuredApiBase || DEFAULT_API_BASE;
 
 type RequestOptions = RequestInit & { auth?: boolean };
 
 export function getToken() {
-  return localStorage.getItem("harmony_token");
+  return localStorage.getItem("ethara_token");
 }
 
 export function setToken(token: string) {
-  localStorage.setItem("harmony_token", token);
+  localStorage.setItem("ethara_token", token);
 }
 
 export function clearToken() {
-  localStorage.removeItem("harmony_token");
+  localStorage.removeItem("ethara_token");
 }
 
 export async function apiRequest<T>(path: string, options: RequestOptions = {}): Promise<T> {
@@ -32,10 +39,16 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   });
 
   const text = await response.text();
-  const data = text ? JSON.parse(text) : null;
+  const contentType = response.headers.get("Content-Type") || "";
+  const isJson = contentType.includes("application/json");
+  const data = text && isJson ? JSON.parse(text) : null;
 
   if (!response.ok) {
-    throw new Error(data?.message || "Request failed");
+    throw new Error(data?.message || `Request failed (${response.status})`);
+  }
+
+  if (text && !isJson) {
+    throw new Error(`Expected JSON but received ${contentType || "an unknown response type"}. Check VITE_API_URL.`);
   }
 
   return data as T;
